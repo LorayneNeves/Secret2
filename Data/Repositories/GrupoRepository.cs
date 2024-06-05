@@ -1,0 +1,93 @@
+﻿using Data.EntityFramework;
+using Domain.Entities;
+using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Data.Repositories
+{
+	public class GrupoRepository : IGrupoRepository
+	{
+
+
+		#region - Atributos e Construtores
+
+		private readonly Context _contexto;
+
+		public GrupoRepository(Context contexto)
+		{
+			_contexto = contexto;
+		}
+		#endregion
+		public async Task Adicionar(Grupo grupo)
+		{
+			try
+			{
+				//await _contexto.Grupo.AddAsync(grupo);
+				await _contexto.SaveChangesAsync();
+			}
+			catch (Exception ex)
+			{
+				throw new Exception($"Erro ao inserir grupo: {ex.Message}");
+			}
+		}
+
+		public async Task Atualizar(Grupo grupo)
+		{
+			try
+			{
+				//await _contexto.Grupo.Where(g => g.GrupoId == grupo.GrupoId).ExecuteUpdateAsync(g => g.SetProperty(g => g, grupo));
+				await _contexto.SaveChangesAsync();
+			}
+			catch (Exception ex)
+			{
+				throw new Exception($"Erro ao atualizar grupo: {ex.Message}");
+			}
+		}
+
+		public async Task<int> BuscarId()
+		{
+			var ultimoId = await _contexto.Grupo.MaxAsync(c => (int?)c.GrupoId) ?? 0;
+
+			return ultimoId;
+		}
+
+		public async Task<Grupo> BuscarPorId(int id)
+		{
+			try
+			{
+				var grupo = await _contexto.Grupo.Where(c => c.GrupoId == id).FirstOrDefaultAsync();
+
+				return grupo;
+			}
+			catch (Exception ex)
+			{
+				throw new Exception($"Erro ao buscar o grupo: {ex.Message}");
+			}
+		}
+
+		public async Task Excluir(Grupo grupo)
+		{
+			try
+			{
+				_contexto.Grupo.Remove(grupo);
+				await _contexto.SaveChangesAsync();
+			}
+			catch (Exception ex)
+			{
+				throw new Exception($"Erro ao excluir grupo: {ex.Message}");
+			}
+		}
+
+		public IEnumerable<Grupo> ObterTodos()
+		{
+			throw new NotImplementedException();
+		}
+
+
+	}
+}
