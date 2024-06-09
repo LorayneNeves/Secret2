@@ -26,11 +26,7 @@ namespace Application.Services
 			_mapper = mapper;
 		}
 		#endregion
-		public Task Atualizar(GrupoUsuarioViewModel grupoUsuario)
-		{
-			throw new NotImplementedException();
-		}
-
+		
 		public async Task<List<GrupoViewModel>> BuscarPorId(int id)
 		{
 
@@ -65,7 +61,7 @@ namespace Application.Services
 			throw new NotImplementedException();
 		}
 
-		public async Task Inserir(NovoGrupoUsuarioViewModel grupoUsuario)
+		public async Task Adicionar(NovoGrupoUsuarioViewModel grupoUsuario)
 		{
 			try
 			{
@@ -74,11 +70,14 @@ namespace Application.Services
 			}
 			catch (Exception ex)
 			{
-				throw new Exception($"Erro ao inserir grupo ao usuário (service): {ex.Message}");
+				throw new Exception($"Erro ao inserir usuário ao grupo (service): {ex.Message}");
 			}
 		}
 
-
+		public Task Atualizar(GrupoUsuarioViewModel grupoUsuario)
+		{
+			throw new NotImplementedException();
+		}
 
 	}
 }

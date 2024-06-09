@@ -22,13 +22,14 @@ namespace Data.EntityFramework
 		public Microsoft.EntityFrameworkCore.DbSet<Grupo> Grupo { get; set; }
 		public Microsoft.EntityFrameworkCore.DbSet<Login> Login { get; set; }
 		public Microsoft.EntityFrameworkCore.DbSet<GrupoUsuario> GrupoUsuario { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<RecuperarSenha> RecuperarSenha { get; set; }
 		public Context(DbContextOptions<Context> options, IConfiguration configuration) : base(options)
 		{
 			_configuration = configuration;
 		}
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer(@"Data source = 10.107.176.41, 1434; 
+			optionsBuilder.UseSqlServer(@"Data source = 201.62.57.93, 1434; 
                                     Database = BD044860; 
                                     User ID = RA044860; 
                                     Password = 044860;
@@ -43,6 +44,7 @@ namespace Data.EntityFramework
 			modelBuilder.ApplyConfiguration(new GrupoConfiguration());
 			modelBuilder.ApplyConfiguration(new LoginConfiguration());
 			modelBuilder.ApplyConfiguration(new GrupoUsuarioConfiguration());
+			modelBuilder.ApplyConfiguration(new RecuperarSenhaConfiguration());
 			base.OnModelCreating(modelBuilder);
 		}
 		

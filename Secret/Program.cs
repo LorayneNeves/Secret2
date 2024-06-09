@@ -36,13 +36,15 @@ builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
+builder.Services.AddScoped<IRecuperarSenhaRepository, RecuperarSenhaRepository>();
+builder.Services.AddScoped<IRecuperarSenhaService, RecuperarSenhaService>();
 var app = builder.Build();
 
 app.UseCors(options =>
 {
-	options.AllowAnyOrigin(); // Permitir solicitações de qualquer origem
-	options.AllowAnyMethod(); // Permitir solicitações de qualquer método (GET, POST, etc.)
-	options.AllowAnyHeader(); // Permitir qualquer cabeçalho na solicitação
+	options.AllowAnyOrigin(); 
+	options.AllowAnyMethod(); 
+	options.AllowAnyHeader(); 
 });
 
 if (app.Environment.IsDevelopment())

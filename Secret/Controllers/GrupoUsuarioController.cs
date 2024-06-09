@@ -14,24 +14,24 @@ namespace Secret.Controllers
 			_grupoUsuarioService = grupoUsuarioService;
 		}
 		#region - Metódos CRUD
-		[HttpGet("buscarporid/{id}")]
+		[HttpGet("BuscarPorId/{id}")]
 		public async Task<IActionResult> GetPorId(int id)
 		{
 			return Ok(await _grupoUsuarioService.BuscarPorId(id));
 		}
-		[HttpPost("adicionar")]
+		[HttpPost("Adicionar")]
 		public async Task<IActionResult> Post([FromBody] NovoGrupoUsuarioViewModel novoGrupoUsuario)
 		{
-			await _grupoUsuarioService.Inserir(novoGrupoUsuario);
+			await _grupoUsuarioService.Adicionar(novoGrupoUsuario);
 
 			return Ok("Grupo cadastrado com sucesso para o usuário");
 		}
-		[HttpDelete("excluir/{id}")]
+		[HttpDelete("Excluir/{id}")]
 		public async Task<IActionResult> Excluir(int id)
 		{
 			await _grupoUsuarioService.Excluir(id);
 
-			return Ok("Grupo excluído com sucesso para o usuário");
+			return Ok("Grupo excluído com sucesso");
 		}
 
 		#endregion

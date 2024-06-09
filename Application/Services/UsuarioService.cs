@@ -62,8 +62,6 @@ namespace Application.Services
             }
         }
 
-
-
         public Task Atualizar(Guid id, UsuarioViewModel usuario)
 		{
 			throw new NotImplementedException();
@@ -85,67 +83,11 @@ namespace Application.Services
 			}
 		}
 
-        public IEnumerable<UsuarioViewModel> ObterTodos()
-        {
-            try
-            {
-                var usuarios = _usuarioRepository.ObterTodos();
-                
-                return _mapper.Map<IEnumerable<UsuarioViewModel>>(usuarios);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Erro ao buscar todos os usuários (service): {ex.Message}");
-            }
-        }
 
-		//public async Task ExcluirGrupo(int id)
-		//{
-		//    try
-		//    {
-		//        var buscaUsuario = await _usuarioRepository.BuscarPorId(id);
+		public Task Desativar(UsuarioViewModel usuario)
+		{
+			throw new NotImplementedException();
+		}
 
-		//        if (buscaUsuario == null)
-		//            throw new ApplicationException("Não é possível excluir um usuário que não existe!");
-
-		//        var buscaGrupoUsuario = _grupoUsuarioRepository.BuscarPorId(id);
-
-		//        if (buscaGrupoUsuario == null)
-		//            await _usuarioRepository.Excluir(buscaUsuario);
-		//        else
-		//        {
-		//            await _grupoUsuarioRepository.Excluir(buscaGrupoUsuario);
-		//            await _usuarioRepository.Excluir(buscaUsuario);
-		//        }
-		//    }
-		//    catch (Exception ex)
-		//    {
-		//        throw new Exception($"Erro ao excluir usuário (service): {ex.Message}");
-		//    }
-
-		//}
-
-		//public async Task Inserir(NovoUsuarioViewModel usuario)
-		//{
-		//    try
-		//    {
-		//        var novoUsuario = _mapper.Map<Usuario>(usuario);
-
-		//        NovoLoginViewModel login = new NovoLoginViewModel
-		//        {
-		//            Email = novoUsuario.Email,
-		//            Senha = novoUsuario.Senha,
-		//        };
-
-		//        var novoLogin = _mapper.Map<Login>(login);
-
-		//        await _usuarioRepository.Inserir(novoUsuario);
-		//        await _loginRepository.Inserir(novoLogin);
-		//    }
-		//    catch (Exception ex)
-		//    {
-		//        throw new Exception($"Erro ao inserir usuário (service): {ex.Message}");
-		//    }         
-		//}
 	}
 }

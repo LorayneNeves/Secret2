@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-	public class RecuperaSenha
+	public class RecuperarSenha
 	{
-		public RecuperaSenha(int idUsuario)
+		public RecuperarSenha(int idUsuario, DateTime dataSolicitacao)
 		{
 			UsuarioId = idUsuario;
+			Data = dataSolicitacao;
 		}
 
-		public int RecuperaSenhaId { get; private set; }
+		public int RecuperarSenhaId { get; private set; }
 		public int UsuarioId { get; private set; }
-		public DateTime DataSolicitacao { get; private set; }
+		public DateTime Data { get; private set; }
 		public Usuario Usuario { get; private set; }
 	}
 }

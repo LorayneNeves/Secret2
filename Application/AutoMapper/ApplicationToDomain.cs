@@ -24,10 +24,10 @@ namespace Application.AutoMapper
 
 
 			CreateMap<GrupoViewModel, Grupo>()
-			   .ConstructUsing(p => new Grupo(p.GrupoId,p.Foto,p.Nome,p.Quantidade,p.Valor,p.DataRevelacao,p.Descricao));
+			   .ConstructUsing(p => new Grupo(p.GrupoId, p.Nome, p.Quantidade, p.Valor, p.DataRevelacao, p.Descricao, p.Foto));
 
 			CreateMap<NovoGrupoViewModel, Grupo>()
-			   .ConstructUsing(p => new Grupo(p.Foto, p.Nome, p.Quantidade, p.Valor, p.DataRevelacao, p.Descricao));
+			   .ConstructUsing(p => new Grupo(p.Nome, p.Quantidade, p.Valor, p.DataRevelacao, p.Descricao, p.Foto));
 
 
 
@@ -44,6 +44,19 @@ namespace Application.AutoMapper
 
 			CreateMap<NovoLoginViewModel, Login>()
 			   .ConstructUsing(c => new Login(c.Email, c.Senha));
+
+
+			CreateMap<RecuperarSenhaViewModel, RecuperarSenha>()
+			   .ConstructUsing(d => new RecuperarSenha(
+				   d.UsuarioId,
+				   d.Data
+				));
+
+			CreateMap<NovoRecuperarSenhaViewModel, RecuperarSenha>()
+			   .ConstructUsing(d => new RecuperarSenha(
+				   d.UsuarioId,
+				   DateTime.UtcNow
+				));
 		}
 	}
 }

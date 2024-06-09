@@ -27,10 +27,28 @@ namespace Application.Services
 		}
 
 		#endregion
-
-		public Task Atualizar(GrupoViewModel grupo)
+		public async Task Adicionar(NovoGrupoViewModel grupo, int idUsuario)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				var novoGrupo = _mapper.Map<Grupo>(grupo);
+				await _grupoRepository.Adicionar(novoGrupo);
+
+				int ultimoId = await _grupoRepository.BuscarId();
+				var grupoUsuarioViewModel = new NovoGrupoUsuarioViewModel
+				{
+					GrupoId = ultimoId,
+					UsuarioId = idUsuario,
+				};
+
+				var grupoUsuario = _mapper.Map<GrupoUsuario>(grupoUsuarioViewModel);
+
+				await _grupoUsuarioRepository.Adicionar(grupoUsuario);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception($"Erro ao inserir grupo (service): {ex.Message}");
+			}
 		}
 
 		public async Task<GrupoViewModel> BuscarPorId(int id)
@@ -63,38 +81,15 @@ namespace Application.Services
 			}
 		}
 
+		public Task Atualizar(GrupoViewModel grupo)
+		{
+			throw new NotImplementedException();
+		}
+
 		public Task Excluir(int id)
 		{
 			throw new NotImplementedException();
 		}
-
-		public async Task Adicionar(NovoGrupoViewModel grupo, int idUsuario)
-		{
-			try
-			{
-				var novoGrupo = _mapper.Map<Grupo>(grupo);
-				await _grupoRepository.Adicionar(novoGrupo);
-
-				int ultimoId = await _grupoRepository.BuscarId();
-				var grupoUsuarioViewModel = new NovoGrupoUsuarioViewModel
-				{
-					GrupoId = ultimoId,
-					UsuarioId = idUsuario,
-				};
-
-				var grupoUsuario = _mapper.Map<GrupoUsuario>(grupoUsuarioViewModel);
-
-				await _grupoUsuarioRepository.Adicionar(grupoUsuario);
-			}
-			catch (Exception ex)
-			{
-				throw new Exception($"Erro ao inserir grupo (service): {ex.Message}");
-			}
-		}
-
-		public Task Adicionar(NovoGrupoViewModel grupo)
-		{
-			throw new NotImplementedException();
-		}
+		
 	}
 }

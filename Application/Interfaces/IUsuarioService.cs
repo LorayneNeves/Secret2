@@ -1,4 +1,5 @@
 ﻿using Application.ViewModels.Usuario;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Application.Interfaces
 {
     public interface IUsuarioService
 	{
-		IEnumerable<UsuarioViewModel> ObterTodos();
 		Task<UsuarioViewModel> BuscarPorEmail(string email);
 		Task Adicionar(NovoUsuarioViewModel usuario);
 		Task Atualizar(Guid id, UsuarioViewModel usuario);
+		Task Desativar(UsuarioViewModel usuario);
 	}
 }

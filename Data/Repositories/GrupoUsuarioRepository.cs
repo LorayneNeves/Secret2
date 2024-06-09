@@ -28,7 +28,7 @@ namespace Data.Repositories
 		{
 			try
 			{
-				//await _contexto.GrupoUsuario.AddAsync(grupoUsuario);
+				await _contexto.GrupoUsuario.AddAsync(grupoUsuario);
 				await _contexto.SaveChangesAsync();
 			}
 			catch (Exception ex)

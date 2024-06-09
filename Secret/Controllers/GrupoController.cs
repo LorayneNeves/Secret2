@@ -16,17 +16,20 @@ namespace Secret.Controllers
 		}
 
 		#region - Metódos CRUD
+
 		[HttpGet()]
 		[ProducesResponseType(typeof(GrupoViewModel), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public IActionResult Get()
 		{
 			return Ok(_grupoService.ObterTodos());
 		}
 
 
-		[HttpGet("/{id}")]
+		[HttpGet("BuscarPorId/{id}")]
 		[ProducesResponseType(typeof(GrupoViewModel), StatusCodes.Status200OK)]
-		public IActionResult GetPorId(int id)
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public IActionResult Get(int id)
 		{
 			return Ok(_grupoService.BuscarPorId(id));
 		}
@@ -34,12 +37,13 @@ namespace Secret.Controllers
 
 		[HttpPost()]
 		[ProducesResponseType(StatusCodes.Status201Created)]
-		public async Task<IActionResult> Post([FromBody] NovoGrupoViewModel grupo, int idUsuario)
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public async Task<IActionResult> Post([FromBody] NovoGrupoRequest novoGrupo)
 		{
+			await _grupoService.Adicionar(novoGrupo.NovoGrupo, novoGrupo.GrupoId);
 
-			await _grupoService.Adicionar(grupo);
+			return Ok("Grupo cadastrado com sucesso");
 
-			return Ok("Usuário cadastrado com sucesso");
 		}
 		#endregion
 	}

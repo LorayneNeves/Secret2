@@ -10,9 +10,10 @@ namespace Domain.Interfaces
 {
 	public interface IUsuarioRepository
 	{
-        IEnumerable<Usuario> ObterTodos();
+       // IEnumerable<Usuario> ObterTodos();
         Task<Usuario> BuscarPorEmail(string email);
         Task Adicionar(Usuario usuario);
-       // Task<IDbContextTransaction> BeginTransactionAsync();
-    }
+		Task Desativar(Usuario usuario);
+		// Task<IDbContextTransaction> BeginTransactionAsync();
+	}
 }

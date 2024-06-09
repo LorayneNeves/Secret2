@@ -10,7 +10,7 @@ namespace Application.Interfaces
 	public interface IGrupoUsuarioService
 	{
 		Task<List<GrupoViewModel>> BuscarPorId(int id);
-		Task Inserir(NovoGrupoUsuarioViewModel grupoUsuario);
+		Task Adicionar(NovoGrupoUsuarioViewModel grupoUsuario);
 		Task Atualizar(GrupoUsuarioViewModel grupoUsuario);
 		Task Excluir(int id);
 	}

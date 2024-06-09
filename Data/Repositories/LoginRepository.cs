@@ -24,13 +24,10 @@ namespace Data.Repositories
 			_contexto = contexto;
 			_mapper = mapper;
 		}
-
+		#endregion
 		public async Task<Login> Autenticar(string email, string senha)
 		{
-			var login = await _contexto.Login.Where(filtro =>
-						filtro.Email == email && filtro.Senha == senha).FirstOrDefaultAsync();
-
-			return _mapper.Map<Login>(login);
+			return await _contexto.Login.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
 		}
 
 		public async Task<Login> BuscarPorId(int id)
@@ -59,7 +56,7 @@ namespace Data.Repositories
 			}
 		}
 
-		#endregion
+
 
 	}
 }

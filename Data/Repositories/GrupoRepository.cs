@@ -27,7 +27,7 @@ namespace Data.Repositories
 		{
 			try
 			{
-				//await _contexto.Grupo.AddAsync(grupo);
+				await _contexto.Grupo.AddAsync(grupo);
 				await _contexto.SaveChangesAsync();
 			}
 			catch (Exception ex)
@@ -58,16 +58,9 @@ namespace Data.Repositories
 
 		public async Task<Grupo> BuscarPorId(int id)
 		{
-			try
-			{
-				var grupo = await _contexto.Grupo.Where(c => c.GrupoId == id).FirstOrDefaultAsync();
 
-				return grupo;
-			}
-			catch (Exception ex)
-			{
-				throw new Exception($"Erro ao buscar o grupo: {ex.Message}");
-			}
+			throw new NotImplementedException();
+
 		}
 
 		public async Task Excluir(Grupo grupo)
@@ -85,7 +78,16 @@ namespace Data.Repositories
 
 		public IEnumerable<Grupo> ObterTodos()
 		{
-			throw new NotImplementedException();
+			try
+			{
+				var grupos = _contexto.Grupo.Where(c => c.GrupoId != 9).ToList();
+
+				return grupos;
+			}
+			catch (Exception ex)
+			{
+				throw new Exception($"Erro ao buscar os grupos: {ex.Message}");
+			}
 		}
 
 

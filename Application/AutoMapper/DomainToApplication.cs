@@ -19,7 +19,7 @@ namespace Application.AutoMapper
 			CreateMap<GrupoUsuario, GrupoUsuarioViewModel>();
 			CreateMap<Login, LoginViewModel>();
 			CreateMap<NovoUsuarioViewModel, Login>();
-			//CreateMap<RecuperaSenha, RecuperaSenhaViewModel>();
+			CreateMap<RecuperarSenha, RecuperarSenhaViewModel>();
 		}
 	}
 }

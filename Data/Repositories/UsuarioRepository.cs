@@ -55,32 +55,24 @@ namespace Data.Repositories
 		{
 			try
 			{
-                return await _contexto.Usuario.FirstOrDefaultAsync(u => u.Email == email);
-                
+				var usuario = await _contexto.Usuario.Where(c => c.Email == email).FirstOrDefaultAsync();
+
+				return usuario;
 			}
 			catch (Exception ex)
 			{
-				throw new Exception($"Erro ao buscar o usuário: {ex.Message}");
+				throw new Exception($"Erro ao buscar o usuário por email: {ex.Message}");
 			}
 		}
 
-		public IEnumerable<Usuario> ObterTodos()
+		Task IUsuarioRepository.Desativar(Usuario usuario)
 		{
-			//throw new NotImplementedException();
-			try
-			{
-                //var usuarios = _contexto.Usuario.Where(u => u.UsuarioId == usuario.UsuarioId).ToList();
-                return _contexto.Usuario.ToList();
-
-            }
-            catch (Exception ex)
-			{
-				throw new Exception($"Erro ao buscar os usuários: {ex.Message}");
-			}
+			throw new NotImplementedException();
 		}
-        //public async Task<IDbContextTransaction> BeginTransactionAsync()
-        //{
-        //    return await _contexto.Database.BeginTransactionAsync();
-        //}
-    }
+
+		//public async Task<IDbContextTransaction> BeginTransactionAsync()
+		//{
+		//    return await _contexto.Database.BeginTransactionAsync();
+		//}
+	}
 }

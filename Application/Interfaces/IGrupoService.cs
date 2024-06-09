@@ -11,7 +11,7 @@ namespace Application.Interfaces
 	{
 		IEnumerable<GrupoViewModel> ObterTodos();
 		Task<GrupoViewModel> BuscarPorId(int id);
-		Task Adicionar(NovoGrupoViewModel grupo);
+		Task Adicionar(NovoGrupoViewModel grupo, int idUsuario);
 		Task Atualizar(GrupoViewModel grupo);
 		Task Excluir(int id);
 		
