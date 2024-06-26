@@ -17,7 +17,7 @@ namespace Domain.Entities
 		{
 			
 		}
-		public int GrupoUsuarioId { get; private set; }
+		//public int GrupoUsuarioId { get; private set; }
 		public int GrupoId { get; private set; }
 		public int UsuarioId { get; private set; }
 		public Usuario Usuario { get; private set; }

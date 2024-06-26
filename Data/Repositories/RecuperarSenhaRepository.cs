@@ -17,7 +17,7 @@ namespace Data.Repositories
 
 		private readonly Context _contexto;
 
-		public RecuperaSenhaRepository(Context contexto)
+		public RecuperarSenhaRepository(Context contexto)
 		{
 			_contexto = contexto;
 		}

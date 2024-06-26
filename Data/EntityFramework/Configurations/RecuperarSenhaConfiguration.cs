@@ -36,6 +36,14 @@ namespace Data.EntityFramework.Configurations
 				.Property(p => p.Data)
 				.HasColumnName("Data")
 				.HasColumnType("datetime");
+
+			builder.HasData(
+			new
+			{
+				RecuperarSenhaId = 1,
+				UsuarioId = 1,
+				Data = DateTime.Now
+			});
 		}
 	}
 }

@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces;
 using Application.ViewModels.Grupo;
+using Application.ViewModels.Usuario;
 using AutoMapper;
+using Data.Repositories;
 using Domain.Entities;
 using Domain.Interfaces;
 using System;
@@ -27,28 +29,43 @@ namespace Application.Services
 		}
 
 		#endregion
-		public async Task Adicionar(NovoGrupoViewModel grupo, int idUsuario)
+		public async Task Adicionar(NovoGrupoViewModel grupo)
 		{
 			try
 			{
+				
+		
 				var novoGrupo = _mapper.Map<Grupo>(grupo);
+
+			
+
+
 				await _grupoRepository.Adicionar(novoGrupo);
+				
 
-				int ultimoId = await _grupoRepository.BuscarId();
-				var grupoUsuarioViewModel = new NovoGrupoUsuarioViewModel
-				{
-					GrupoId = ultimoId,
-					UsuarioId = idUsuario,
-				};
-
-				var grupoUsuario = _mapper.Map<GrupoUsuario>(grupoUsuarioViewModel);
-
-				await _grupoUsuarioRepository.Adicionar(grupoUsuario);
+				//await transaction.CommitAsync();
 			}
+			//try
+			//{
+			//	var novoGrupo = _mapper.Map<Grupo>(grupo);
+			//	await _grupoRepository.Adicionar(novoGrupo);
+
+			//	int ultimoId = await _grupoRepository.BuscarId();
+			//	var grupoUsuarioViewModel = new NovoGrupoUsuarioViewModel
+			//	{
+			//		GrupoId = ultimoId,
+			//		UsuarioId = idUsuario,
+			//	};
+
+			//	var grupoUsuario = _mapper.Map<GrupoUsuario>(grupoUsuarioViewModel);
+
+			//	await _grupoUsuarioRepository.Adicionar(grupoUsuario);
+			//}
 			catch (Exception ex)
 			{
 				throw new Exception($"Erro ao inserir grupo (service): {ex.Message}");
 			}
+
 		}
 
 		public async Task<GrupoViewModel> BuscarPorId(int id)
@@ -56,6 +73,11 @@ namespace Application.Services
 			try
 			{
 				var grupo = await _grupoRepository.BuscarPorId(id);
+
+				if (grupo == null)
+				{
+					throw new Exception("Grupo não encontrado");
+				}
 
 				GrupoViewModel buscaGrupoId = _mapper.Map<GrupoViewModel>(grupo);
 
@@ -90,6 +112,6 @@ namespace Application.Services
 		{
 			throw new NotImplementedException();
 		}
-		
+
 	}
 }

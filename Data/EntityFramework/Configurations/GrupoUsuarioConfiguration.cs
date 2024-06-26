@@ -16,31 +16,27 @@ namespace Data.EntityFramework.Configurations
 			builder.ToTable("MembrosGrupo", "AmigoSecreto");
 			builder.HasKey(f => new{f.UsuarioId, f.GrupoId});
 
-
 			builder
-				.Property(f => f.GrupoId)
-				.HasColumnName("GrupoId")
-				.HasColumnType("int");
-
-			builder
-				.HasOne(f => f.Grupo)
-				.WithMany()
-				.HasForeignKey(f => f.GrupoId);
+		   .Property(f => f.GrupoId)
+		   .HasColumnName("GrupoId")
+		   .HasColumnType("int");
 
 			builder
 				.Property(f => f.UsuarioId)
 				.HasColumnName("UsuarioId")
 				.HasColumnType("int");
 
-            builder.HasOne(gu => gu.Usuario)
-               .WithMany(u => u.GrupoUsuarios)
-               .HasForeignKey(gu => gu.UsuarioId);
+			builder
+				.HasOne(f => f.Usuario)
+				.WithMany(u => u.GrupoUsuarios)
+				.HasForeignKey(f => f.UsuarioId);
 
-            builder.HasOne(gu => gu.Grupo)
-               .WithMany(g => g.GrupoUsuarios)
-               .HasForeignKey(gu => gu.GrupoId);
+			builder
+				.HasOne(f => f.Grupo)
+				.WithMany(g => g.GrupoUsuarios)
+				.HasForeignKey(f => f.GrupoId);
 
-        }
+		}
 	}
 	
 }

@@ -4,6 +4,7 @@ using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,15 +52,14 @@ namespace Data.Repositories
 
 		public async Task<int> BuscarId()
 		{
-			var ultimoId = await _contexto.Grupo.MaxAsync(c => (int?)c.GrupoId) ?? 0;
-
+			var ultimoId = await _contexto.Grupo.MaxAsync(g => g.GrupoId);
 			return ultimoId;
 		}
 
 		public async Task<Grupo> BuscarPorId(int id)
 		{
 
-			throw new NotImplementedException();
+			return await _contexto.Grupo.FindAsync(id);
 
 		}
 

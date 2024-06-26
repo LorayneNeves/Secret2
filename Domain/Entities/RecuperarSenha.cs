@@ -13,7 +13,7 @@ namespace Domain.Entities
 			UsuarioId = idUsuario;
 			Data = dataSolicitacao;
 		}
-
+		private RecuperarSenha() { }
 		public int RecuperarSenhaId { get; private set; }
 		public int UsuarioId { get; private set; }
 		public DateTime Data { get; private set; }

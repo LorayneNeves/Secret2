@@ -40,7 +40,7 @@ namespace Secret.Controllers
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<IActionResult> Post([FromBody] NovoGrupoRequest novoGrupo)
 		{
-			await _grupoService.Adicionar(novoGrupo.NovoGrupo, novoGrupo.GrupoId);
+			await _grupoService.Adicionar(novoGrupo.NovoGrupo);
 
 			return Ok("Grupo cadastrado com sucesso");
 
